@@ -10,6 +10,17 @@
 - 弾幕シューティングゲームを制作しようと思い、敵キャラとして大学のマスコットキャラクターである「りさじゅう」を採用しました
 - 敵が撃ってくる弾はリサージュ曲線を描くようにしました
 
+**`EnemyScript.cs`**
+```csharp
+// リサージュ曲線を描く弾幕
+void bullethell(GameObject bullet, float width = 1, float height = 1, float xcycle = 1, float ycycle = 1, float xdensity = 1, float ydensity = 1)
+{
+    GameObject bul = Instantiate(bullet);
+    bul.transform.position = new Vector3(width * Mathf.Cos(xcycle * Time.realtimeSinceStartup), height * Mathf.Sin(ycycle * Time.realtimeSinceStartup) + 5, 0);
+    bul.transform.Rotate(0, 0, 360 * Mathf.Cos(Time.realtimeSinceStartup / xdensity) * Mathf.Sin(Time.realtimeSinceStartup / ydensity));
+}
+```
+
 # ゲーム概要
 - 三段階ある敵のHPを全て削り切ればクリアです
 
